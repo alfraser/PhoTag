@@ -40,7 +40,7 @@ struct ContentView: View {
             } else {
                 NavigationView {
                     List(viewModel.taggedPhotos) { taggedPhoto in
-                        NavigationLink(destination: TaggedPhotoDetailView(taggedPhoto: taggedPhoto)) {
+                        NavigationLink(destination: TaggedPhotoDetailView(taggedPhoto: taggedPhoto, viewModel: viewModel)) {
                             TaggedPhotoListRow(taggedPhoto: taggedPhoto)
                         }
                     }
@@ -48,6 +48,9 @@ struct ContentView: View {
                         showingAddSheet = true
                     }
                     .navigationTitle("PhoTag")
+                }
+                .sheet(isPresented: $showingAddSheet) {
+                    ImagePicker(image: $newImage)
                 }
             }
         }

@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct TaggedPhotoDetailView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State var taggedPhoto: TaggedPhoto
+    var viewModel: ContentView.ViewModel
     
     var body: some View {
         ZStack {
@@ -21,8 +20,7 @@ struct TaggedPhotoDetailView: View {
             }
         }
         .withSystemImageButton(systemImage: "trash.fill") {
-            print("Delete pressed")
-            presentationMode.wrappedValue.dismiss()
+            viewModel.deletePhoto(id: taggedPhoto.id)
         }
     }
 }
@@ -32,7 +30,7 @@ struct TaggedPhotoDetailView_Previews: PreviewProvider {
     static var exampleWithoutPhoto = TaggedPhoto.example
     
     static var previews: some View {
-        TaggedPhotoDetailView(taggedPhoto: exampleWithPhoto)
-        TaggedPhotoDetailView(taggedPhoto: exampleWithoutPhoto)
+        TaggedPhotoDetailView(taggedPhoto: exampleWithPhoto, viewModel: ContentView.ViewModel())
+        TaggedPhotoDetailView(taggedPhoto: exampleWithoutPhoto, viewModel: ContentView.ViewModel())
     }
 }
