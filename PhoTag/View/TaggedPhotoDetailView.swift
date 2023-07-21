@@ -15,9 +15,9 @@ struct TaggedPhotoDetailView: View {
     var body: some View {
         ZStack {
             if let img = taggedPhoto.image {
-                PhotoDetailView(photo: img, description: taggedPhoto.description, id: taggedPhoto.id)
+                PhotoDetailView(photo: img, description: taggedPhoto.description)
             } else {
-                MissingPhotoView(description: taggedPhoto.description, id: taggedPhoto.id)
+                MissingPhotoView(description: taggedPhoto.description)
             }
         }
         .withSystemImageButton(systemImage: "trash.fill") {
