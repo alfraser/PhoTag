@@ -29,4 +29,13 @@ class ImageSaver: NSObject {
         let photoLoadPath = FileManager.documentsDirectory.appendingPathComponent("\(id.uuidString).jpg")
         return UIImage(contentsOfFile: photoLoadPath.path())
     }
+    
+    static func deleteJPEGFromDocumentsDirectory(id: UUID) {
+        let photoDeletePath = FileManager.documentsDirectory.appendingPathComponent("\(id.uuidString).jpg")
+        do {
+            try FileManager().removeItem(atPath: photoDeletePath.path())
+        } catch {
+            print("Error in deleting file with name \(id.uuidString).jpg")
+        }
+    }
 }

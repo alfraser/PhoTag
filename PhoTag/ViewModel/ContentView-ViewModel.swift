@@ -30,6 +30,14 @@ extension ContentView {
                 print("Unable to save data")
             }
         }
+        
+        func deletePhoto(id: UUID) {
+            ImageSaver.deleteJPEGFromDocumentsDirectory(id: id)
+            if let index = taggedPhotos.firstIndex(where: { $0.id == id } ) {
+                taggedPhotos.remove(at: index)
+                save()
+            }
+        }
     }
 }
 
