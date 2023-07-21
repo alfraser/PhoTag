@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PhotoDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var photo: UIImage
     @State var description: String
     var id: UUID
@@ -23,6 +25,7 @@ struct PhotoDetailView: View {
         }
         .withSystemImageButton(systemImage: "trash.fill") {
             print("Delete pressed")
+            presentationMode.wrappedValue.dismiss()
         }
     }
 }
