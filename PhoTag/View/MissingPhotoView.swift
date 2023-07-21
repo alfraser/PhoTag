@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct MissingPhotoView: View {
-    
-    
     @State var description: String
-    var id: UUID
     
     var body: some View {
         ZStack {
@@ -36,6 +33,6 @@ struct MissingPhotoView: View {
 
 struct MissingPhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        MissingPhotoView(description: "Sample missing picture", id: UUID())
+        MissingPhotoView(description: "Sample missing picture")
     }
 }
