@@ -34,9 +34,6 @@ struct ContentView: View {
                 .withSystemImageButton(systemImage: "photo.stack") {
                     showingAddSheet = true
                 }
-                .sheet(isPresented: $showingAddSheet) {
-                    ImagePicker(image: $newImage)
-                }
             } else {
                 NavigationView {
                     List(viewModel.taggedPhotos) { taggedPhoto in
@@ -49,10 +46,10 @@ struct ContentView: View {
                     }
                     .navigationTitle("PhoTag")
                 }
-                .sheet(isPresented: $showingAddSheet) {
-                    ImagePicker(image: $newImage)
-                }
             }
+        }
+        .sheet(isPresented: $showingAddSheet) {
+            ImagePicker(image: $newImage)
         }
         .sheet(isPresented: $showingDescriptionSheet) {
             Form {
@@ -146,8 +143,9 @@ struct TaggedPhotoListRow: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = ContentView.ViewModel()
-        for _ in 1...30 {
-            vm.taggedPhotos.append(TaggedPhoto.example)
+        for i in 1...30 {
+            let e = TaggedPhoto(id: UUID(), description: "Example \(i)")
+            vm.taggedPhotos.append(e)
         }
         
         return Group {
