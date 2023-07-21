@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TaggedPhotoDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var taggedPhoto: TaggedPhoto
     
     var body: some View {
@@ -17,6 +19,10 @@ struct TaggedPhotoDetailView: View {
             } else {
                 MissingPhotoView(description: taggedPhoto.description, id: taggedPhoto.id)
             }
+        }
+        .withSystemImageButton(systemImage: "trash.fill") {
+            print("Delete pressed")
+            presentationMode.wrappedValue.dismiss()
         }
     }
 }
