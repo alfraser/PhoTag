@@ -18,7 +18,7 @@ struct ContentView: View {
     @State var newTaggedPhoto: TaggedPhoto?
     
     var body: some View {
-        ZStack {
+        Group {
             if viewModel.taggedPhotos.count == 0 {
                 VStack {
                     Image(systemName: "text.below.photo")
@@ -31,6 +31,12 @@ struct ContentView: View {
                         .padding()
                     Text("Click add below to get tagging")
                 }
+                .withSystemImageButton(systemImage: "photo.stack") {
+                    showingAddSheet = true
+                }
+                .sheet(isPresented: $showingAddSheet) {
+                    ImagePicker(image: $newImage)
+                }
             } else {
                 NavigationView {
                     List(viewModel.taggedPhotos) { taggedPhoto in
@@ -38,28 +44,11 @@ struct ContentView: View {
                             TaggedPhotoListRow(taggedPhoto: taggedPhoto)
                         }
                     }
+                    .withSystemImageButton(systemImage: "photo.stack") {
+                        showingAddSheet = true
+                    }
                     .navigationTitle("PhoTag")
                 }
-            }
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button {
-                        showingAddSheet = true
-                    } label: {
-                        Image(systemName: "photo.stack")
-                            .padding(8)
-                            .background(.blue)
-                            .foregroundColor(.white)
-                            .font(.title)
-                            .clipShape(Circle())
-                            .padding(.trailing)
-                    }
-                }
-            }
-            .sheet(isPresented: $showingAddSheet) {
-                ImagePicker(image: $newImage)
             }
         }
         .sheet(isPresented: $showingDescriptionSheet) {

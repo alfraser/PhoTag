@@ -58,7 +58,6 @@
 				61CCF7F82A66B89C0088D7FC /* PhotoDetailView.swift */,
 				6121DD3B2A68071A004ED156 /* MissingPhotoView.swift */,
 				6121DD3D2A68073A004ED156 /* TaggedPhotoDetailView.swift */,
-				61CCF7FA2A66CF190088D7FC /* ViewModifiers.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -92,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				6121DD462A685B3F004ED156 /* ImagePicker.swift */,
+				61CCF7FA2A66CF190088D7FC /* ViewModifiers.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
