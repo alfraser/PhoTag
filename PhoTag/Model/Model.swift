@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct TaggedPhoto: Identifiable, Codable, Equatable {
+struct TaggedPhoto: Identifiable, Codable, Equatable, Comparable {
     var id = UUID()
     var description = ""
     
@@ -27,4 +27,9 @@ struct TaggedPhoto: Identifiable, Codable, Equatable {
     static func ==(lhs: TaggedPhoto, rhs: TaggedPhoto) -> Bool {
         lhs.id == rhs.id
     }
+    
+    static func < (lhs: TaggedPhoto, rhs: TaggedPhoto) -> Bool {
+        lhs.description.lowercased() < rhs.description.lowercased()
+    }
+    
 }

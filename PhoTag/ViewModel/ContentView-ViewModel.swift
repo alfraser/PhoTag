@@ -17,6 +17,7 @@ extension ContentView {
             do {
                 let data = try Data(contentsOf: savePath)
                 taggedPhotos = try JSONDecoder().decode([TaggedPhoto].self, from: data)
+                taggedPhotos.sort()
             } catch {
                 taggedPhotos = []
             }
@@ -37,6 +38,12 @@ extension ContentView {
                 taggedPhotos.remove(at: index)
                 save()
             }
+        }
+        
+        func appendPhoto(_ photo: TaggedPhoto) {
+            taggedPhotos.append(photo)
+            taggedPhotos.sort()
+            save()
         }
     }
 }

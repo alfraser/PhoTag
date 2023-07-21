@@ -107,8 +107,7 @@ struct ContentView: View {
             reset()
             return
         }
-        viewModel.taggedPhotos.append(newTaggedPhoto!)
-        viewModel.save()
+        viewModel.appendPhoto(newTaggedPhoto!)
         reset()
     }
     
