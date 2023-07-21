@@ -13,9 +13,9 @@ struct TaggedPhotoDetailView: View {
     var body: some View {
         ZStack {
             if let img = taggedPhoto.image {
-                PhotoDetailView(photo: img, description: taggedPhoto.description)
+                PhotoDetailView(photo: img, description: taggedPhoto.description, id: taggedPhoto.id)
             } else {
-                MissingPhotoView(description: taggedPhoto.description)
+                MissingPhotoView(description: taggedPhoto.description, id: taggedPhoto.id)
             }
         }
     }

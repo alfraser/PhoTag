@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MissingPhotoView: View {
     @State var description: String
+    var id: UUID
     
     var body: some View {
         ZStack {
@@ -28,11 +29,14 @@ struct MissingPhotoView: View {
         }
         .frame(height: 300)
         .padding(2.0)
+        .withSystemImageButton(systemImage: "trash.fill") {
+            print("Delete pressed")
+        }
     }
 }
 
 struct MissingPhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        MissingPhotoView(description: "Sample missing picture")
+        MissingPhotoView(description: "Sample missing picture", id: UUID())
     }
 }

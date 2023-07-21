@@ -10,6 +10,7 @@ import SwiftUI
 struct PhotoDetailView: View {
     @State var photo: UIImage
     @State var description: String
+    var id: UUID
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -20,12 +21,15 @@ struct PhotoDetailView: View {
             Text(description)
                 .asLabel()
         }
+        .withSystemImageButton(systemImage: "trash.fill") {
+            print("Delete pressed")
+        }
     }
 }
 
 struct PhotoDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let examplePhoto = UIImage(named: "test")!
-        PhotoDetailView(photo: examplePhoto, description: "A book we liked to read")
+        PhotoDetailView(photo: examplePhoto, description: "A book we liked to read", id: UUID())
     }
 }
