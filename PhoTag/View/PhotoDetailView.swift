@@ -10,15 +10,49 @@ import SwiftUI
 struct PhotoDetailView: View {
     @State var photo: UIImage
     @State var description: String
+    @State var showMap = false
     
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            Image(uiImage: photo)
-                .resizable()
-                .scaledToFit()
-                .padding(3)
-            Text(description)
-                .asLabel()
+        ZStack {
+            ZStack(alignment: .bottomTrailing) {
+                Image(uiImage: photo)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(3)
+                Text(description)
+                    .asLabel()
+            }
+            VStack {
+                Spacer()
+                HStack {
+                    if showMap {
+                        Button {
+                            showMap.toggle()
+                        } label: {
+                            Image(systemName: "arrow.down.left.circle")
+                                .padding(8)
+                                .background(.blue)
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .clipShape(Circle())
+                                .padding(.leading)
+                        }
+                    } else {
+                        Button {
+                            showMap.toggle()
+                        } label: {
+                            Image(systemName: "mappin.and.ellipse")
+                                .padding(8)
+                                .background(.blue)
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .clipShape(Circle())
+                                .padding(.leading)
+                        }
+                    }
+                    Spacer()
+                }
+            }
         }
     }
 }
