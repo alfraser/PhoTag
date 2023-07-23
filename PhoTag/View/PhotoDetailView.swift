@@ -29,17 +29,11 @@ struct PhotoDetailView: View {
                     Spacer()
                     HStack {
                         if showMap {
-                            Button {
-                                showMap.toggle()
-                            } label: {
-                                Image(systemName: "arrow.down.left.circle")
-                                    .padding(8)
-                                    .background(.blue)
-                                    .foregroundColor(.white)
-                                    .font(.title)
-                                    .clipShape(Circle())
-                                    .padding(.leading)
-                            }
+                            MiniMapView(location: loc)
+                                .padding(.leading)
+                                .onTapGesture {
+                                    showMap.toggle()
+                                }
                         } else {
                             Button {
                                 showMap.toggle()
