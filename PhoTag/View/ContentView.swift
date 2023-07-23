@@ -17,6 +17,8 @@ struct ContentView: View {
     @State var newImageDescription = ""
     @State var newTaggedPhoto: TaggedPhoto?
     
+    let locationFetcher = LocationFetcher()
+    
     var body: some View {
         Group {
             if viewModel.taggedPhotos.count == 0 {
@@ -80,6 +82,7 @@ struct ContentView: View {
     func loadNewImage() {
         guard newImage != nil else { return }
         newImageDescription = ""
+        locationFetcher.start()
         showingDescriptionSheet = true
     }
     
@@ -89,7 +92,17 @@ struct ContentView: View {
         
         var tp = TaggedPhoto()
         tp.description = newImageDescription
+        
+        if let loc = locationFetcher.lastKnownLocation {
+            print("Adding location")
+            tp.latitude = loc.latitude
+            tp.longitude = loc.longitude
+        } else {
+            print("No location available")
+        }
+        
         newTaggedPhoto = tp
+        
         let imgSaver = ImageSaver()
         imgSaver.successHandler = imageSaved
         imgSaver.writeToDocumentsDirectoryAsJPEG(image: img, id: tp.id)
